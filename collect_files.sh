@@ -44,12 +44,8 @@ def d(p):
 
 for p, ds, fs in os.walk(i):
     depth = d(p)
-    rel = os.path.relpath(p, i)
-    out_p = os.path.join(o, rel)
-    os.makedirs(out_p, exist_ok=True)
     if m is not None and depth >= int(m):
         ds.clear()
-        fs.clear()
         continue
     for f in fs:
         sp = os.path.join(p, f)
@@ -58,8 +54,8 @@ for p, ds, fs in os.walk(i):
         if count == 0:
             nf = f
         else:
-            nf = f"{base}_${count}${ext}"
+            nf = f"{base}_${count}{ext}"
         fc[f] = count + 1
-        tp = os.path.join(out_p, nf)
+        tp = os.path.join(o, nf)
         shutil.copy2(sp, tp)
 EOF
