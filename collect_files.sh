@@ -46,7 +46,7 @@ for p, ds, fs in os.walk(i):
     depth = d(p)
     if m is not None and depth >= int(m):
         ds.clear()
-        continue
+        fs.clear()
     for f in fs:
         sp = os.path.join(p, f)
         base, ext = os.path.splitext(f)
