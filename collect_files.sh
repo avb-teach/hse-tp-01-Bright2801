@@ -42,18 +42,19 @@ fc = {}
 def d(p):
     return p.count(os.sep) - i.count(os.sep)
 
-for r, ds, fs in os.walk(i):
-    if md is not None and d(r) >= int(md):
-        ds.clear()
-    for f in fs:
-        s = os.path.join(r, f)
-        n = f
-        if f in fc:
-            fc[f] += 1
-            b, e = os.path.splitext(f)
-            n = f"{b}{fc[f]}{e}"
+for p, dirs, files in os.walk(s):
+    depth = get_depth(p)
+    if m is not None and depth >= int(m):
+        dirs.clear()
+        continue
+    for f in files:
+        src = os.path.join(p, f)
+        if f in c:
+            c[f] += 1
+            name, ext = os.path.splitext(f)
+            nf = f"{name}{c[f]}{ext}"
         else:
-            fc[f] = 0
-        t = os.path.join(o, n)
-        shutil.copy2(s, t)
+            c[f] = 0
+            nf = f
+        shutil.copy2(src, os.path.join(d, nf))
 END
