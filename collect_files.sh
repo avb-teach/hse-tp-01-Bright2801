@@ -49,13 +49,13 @@ for p, ds, fs in os.walk(i):
         continue
     for f in fs:
         sp = os.path.join(p, f)
-        if f in fc:
-            fc[f] += 1
-            b, e = os.path.splitext(f)
-            nf = f"{b}{fc[f]}{e}"
-        else:
-            fc[f] = 0
+        base, ext = os.path.splitext(f)
+        count = fc.get(f, 0)
+        if count == 0:
             nf = f
+        else:
+            nf = f"{base}_${count}{ext}"
+        fc[f] = count + 1
         tp = os.path.join(o, nf)
         shutil.copy2(sp, tp)
 EOF
