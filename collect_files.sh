@@ -43,8 +43,8 @@ def d(p):
     return p.count(os.sep) - i.count(os.sep)
 
 for p, ds, fs in os.walk(i):
-    dp = d(p)
-    if m is not None and dp >= int(m):
+    depth = d(p)
+    if m is not None and depth >= int(m):
         ds.clear()
         continue
     for f in fs:
